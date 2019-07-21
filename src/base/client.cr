@@ -1,27 +1,51 @@
-require "./user"
-require "./resources/**"
+require "./endpoint"
+require "./models/**"
+require "./endpoints/**"
 
 module Base
+  # A client containing all the endpoints.
   class Client
-    getter images : ImageResource
-    getter users : UserResource
-    getter files : FileResource
+    # Endpoint for the sessions.
+    getter sessions : Endpoints::Sessions
 
-    def initialize(access_token : String, endpoint : String = "http://localhost:8080")
+    # Endpoint for the emails.
+    getter emails : Endpoints::Emails
+
+    # Endpoint for the images.
+    getter images : Endpoints::Images
+
+    # Endpoint for the users.
+    getter users : Endpoints::Users
+
+    # Endpoint for the files.
+    getter files : Endpoints::Files
+
+    # Initializes a new client with an access_token and optional url.
+    def initialize(access_token : String, url : String = "http://localhost:8080")
       @users =
-        UserResource.new(
+        Endpoints::Users.new(
           access_token: access_token,
-          endpoint: endpoint)
+          url: url)
 
       @files =
-        FileResource.new(
+        Endpoints::Files.new(
           access_token: access_token,
-          endpoint: endpoint)
+          url: url)
 
       @images =
-        ImageResource.new(
+        Endpoints::Images.new(
           access_token: access_token,
-          endpoint: endpoint)
+          url: url)
+
+      @sessions =
+        Endpoints::Sessions.new(
+          access_token: access_token,
+          url: url)
+
+      @emails =
+        Endpoints::Emails.new(
+          access_token: access_token,
+          url: url)
     end
   end
 end

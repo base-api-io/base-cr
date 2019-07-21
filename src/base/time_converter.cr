@@ -1,4 +1,5 @@
 module Base
+  # A JSON converter for RFC2822 time format.
   module TimeConverter
     extend self
 
