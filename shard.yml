@@ -1,0 +1,15 @@
+name: base
+version: 0.1.0
+
+authors:
+  - Gusztav Szikszai <guszti5@hotmail.com>
+
+crystal: 0.29.0
+
+license: MIT
+
+
+dependencies:
+  crest:
+    github: mamantoha/crest
+    version: 0.20.0
