@@ -17,8 +17,8 @@ can manage authentication, email sending, files and images of your application.
 
 ## Usage
 
-1. Sign up on [www.base-api.io0](https://www.base-api.io) and creat an
-   applications and copy its access token.
+1. Sign up on [www.base-api.io](https://www.base-api.io) and create an
+   application and copy its access token.
 
 2. Require the shard:
 
@@ -29,7 +29,8 @@ can manage authentication, email sending, files and images of your application.
 3. Create a client:
 
    ```crystal
-   client = Base::Client.new(access_token: "your_access_token")
+   client =
+     Base::Client.new(access_token: "your_access_token")
    ```
 
 ### Sending email
@@ -64,12 +65,42 @@ user =
   client.users.get("user_id")
 
 # Delete a user by id
-client.users.delete("user_id")
+user =
+  client.users.delete("user_id")
+```
+
+### Sessions
+
+Using the `sessions` endpoint on the client you can authenticate a user.
+
+```crystal
+# Create a user with email / password
+user =
+  client.sessions.authenticate(
+    email: "test@user.com",
+    password: "12345")
+```
+
+### Forgot Password Flow
+
+Using the `passwords` endpoint on the client you can perform a forgot password flow.
+
+```crystal
+# Create an forgot password token for the user with the given email address.
+token =
+  client.passwords.forgot_password(email: "test@user.com")
+
+# Using that token set a new password.
+user =
+  client.passwords.set_password(
+    forgot_password_token: token.forgot_password_token,
+    confirmation: "123456",
+    password: "123456")
 ```
 
 ### Files
 
-Using the `files` endpoint  on the client you can create / get / delete or
+Using the `files` endpoint on the client you can create / get / delete or
 download files:
 
 ```crystal
@@ -82,11 +113,16 @@ file =
   client.files.get("file_id")
 
 # Delete a file by id
-client.files.delete("file_id")
+file =
+  client.files.delete("file_id")
 
-# Get a download URL to the file
+# Get a download URL to the file by id
 url =
   client.files.download_url("file_id")
+
+# Download the file by id into an IO
+io =
+  client.files.download("file_id")
 ```
 
 ### Images
@@ -104,9 +140,10 @@ image =
   client.images.get("image_id")
 
 # Delete a image by id
-client.images.delete("image_id")
+image =
+  client.images.delete("image_id")
 
-# Get a link to a prcessed version of the image (crop & resize)
+# Get a link to a prcessed version (crop & resize) of the image by id
 url =
   client.images.image_url(i.id,
     crop: Base::Crop.new(width: 100, height: 100, top: 0, left: 0),

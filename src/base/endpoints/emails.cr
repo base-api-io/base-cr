@@ -2,7 +2,7 @@ module Base
   module Endpoints
     # This endpoint contains methods for sending emails.
     class Emails < Endpoint
-      @path = "files"
+      @path = "email"
 
       # Sends an email with the given parameters.
       #
