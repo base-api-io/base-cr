@@ -3,9 +3,8 @@ module Base
   #
   # It handles request lifecycle and error handling and offers a Crest::Resource.
   class Endpoint
+    getter resource : Crest::Resource
     getter path : String = ""
-
-    @resource : Crest::Resource
 
     # Initializes the endpoint with an access_token and url.
     def initialize(access_token : String, url : String)
@@ -20,10 +19,10 @@ module Base
       yield
     rescue error : Crest::UnprocessableEntity # 422
       raise InvalidRequest.new(InvalidRequest::Data.from_json(error.response.body))
-    rescue error : Crest::RequestFailed
-      raise UnkownError.new(error)
     rescue Crest::Unauthorized # 401
       raise Unauthorized.new
+    rescue error : Exception
+      raise UnkownError.new(error)
     end
   end
 end

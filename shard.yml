@@ -8,8 +8,12 @@ crystal: 0.29.0
 
 license: MIT
 
-
 dependencies:
   crest:
     github: mamantoha/crest
     version: 0.20.0
+
+development_dependencies:
+  webmock:
+    github: manastech/webmock.cr
+    version: 0.11.0

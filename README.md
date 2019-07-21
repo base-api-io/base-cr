@@ -35,7 +35,7 @@ can manage authentication, email sending, files and images of your application.
 
 ### Sending email
 
-Using the `emails` endpoint on the client you send emails:
+Using the `emails` endpoint on the client you can send emails:
 
 ```crystal
 # Sending an email

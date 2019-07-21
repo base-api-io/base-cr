@@ -24,7 +24,7 @@ module Base
     getter files : Endpoints::Files
 
     # Initializes a new client with an access_token and optional url.
-    def initialize(access_token : String, url : String = "http://localhost:8080")
+    def initialize(access_token : String, url : String = "https://api.base-api.io")
       @users =
         Endpoints::Users.new(
           access_token: access_token,
