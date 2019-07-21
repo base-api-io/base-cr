@@ -7,9 +7,11 @@ can manage authentication, email sending, files and images of your application.
 
 1. Add the dependency to your `shard.yml`:
 
-    dependencies:
-      base:
-        github: base-api-io/base-cr
+   ```yaml
+   dependencies:
+     base:
+       github: base-api-io/base-cr
+   ```
 
 2. Run `shards install`
 
@@ -20,11 +22,15 @@ can manage authentication, email sending, files and images of your application.
 
 2. Require the shard:
 
-    require "web"
+   ```crystal
+   require "web"
+   ```
 
 3. Create a client:
 
-    client = Base::Client.new(access_token: "your_access_token")
+   ```crystal
+   client = Base::Client.new(access_token: "your_access_token")
+   ```
 
 ### Sending email
 
