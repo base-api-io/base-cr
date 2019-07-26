@@ -11,6 +11,7 @@ can manage authentication, email sending, files and images of your application.
    dependencies:
      base:
        github: base-api-io/base-cr
+       version: 1.0.0
    ```
 
 2. Run `shards install`
