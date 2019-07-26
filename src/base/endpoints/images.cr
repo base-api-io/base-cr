@@ -49,6 +49,24 @@ module Base
         "#{@resource.url}#{id}/version?#{params}"
       end
 
+      # Downloads the image with the given ID.
+      #
+      # It is possible to crop and resize the image and change its format
+      # and quality.
+      def download(id : String,
+                   quality : Int32 | Nil = nil,
+                   resize : Resize | Nil = nil,
+                   format : String | Nil = nil,
+                   crop : Crop | Nil = nil)
+        request do
+          response =
+            Crest.get image_url(id, quality, resize, format, crop)
+
+          response.http_client_res.body_io? ||
+            IO::Memory.new(response.body)
+        end
+      end
+
       # Returns the metadata of the image with the given ID.
       def get(id) : Image
         request do

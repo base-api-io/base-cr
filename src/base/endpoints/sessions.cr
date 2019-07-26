@@ -2,7 +2,7 @@ module Base
   # This endpoint contains a method for authenticating a user.
   module Endpoints
     class Sessions < Endpoint
-      @path = "users"
+      @path = "sessions"
 
       # Tries to authenticate (log in) the user with email and password.
       #
