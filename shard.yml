@@ -11,7 +11,7 @@ license: MIT
 dependencies:
   crest:
     github: mamantoha/crest
-    version: 0.20.0
+    version: 0.21.0
 
 development_dependencies:
   webmock:
