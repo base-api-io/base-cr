@@ -1,6 +1,6 @@
 module Base
-  # This endpoint contains methods for creating and managing users.
   module Endpoints
+    # This endpoint contains methods for creating and managing users.
     class Users < Endpoint
       @path = "users"
 

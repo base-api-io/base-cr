@@ -1,6 +1,6 @@
 module Base
-  # This endpoint contains methods for handling the forgot password flow.
   module Endpoints
+    # This endpoint contains methods for handling the forgot password flow.
     class Passwords < Endpoint
       @path = "password"
 

@@ -24,7 +24,7 @@ module Base
       def download(id : String) : IO
         request do
           response =
-            @resource.get "#{id}/download"
+            Crest.get "#{id}/download"
 
           response.http_client_res.body_io? ||
             IO::Memory.new(response.body)
