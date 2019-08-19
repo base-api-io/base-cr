@@ -1,6 +1,6 @@
 module Base
-  # This endpoint contains a method for authenticating a user.
   module Endpoints
+    # This endpoint contains a method for authenticating a user.
     class Sessions < Endpoint
       @path = "sessions"
 
