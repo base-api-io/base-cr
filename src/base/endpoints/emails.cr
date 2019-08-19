@@ -19,7 +19,7 @@ module Base
                to : String) : Email
         request do
           response =
-            @resource.post(form: {
+            @resource.post("", form: {
               "from"    => from,
               "to"      => to,
               "subject" => subject,

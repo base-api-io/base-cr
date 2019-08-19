@@ -8,7 +8,7 @@ module Base
     end
 
     def to_json(value, builder)
-      value.to_rfc2822
+      builder.string(value.to_rfc2822)
     end
   end
 end

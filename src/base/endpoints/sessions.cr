@@ -11,7 +11,7 @@ module Base
       def authenticate(email : String, password : String) : User
         request do
           response =
-            @resource.post(form: {
+            @resource.post("", form: {
               "password" => password,
               "email"    => email,
             })

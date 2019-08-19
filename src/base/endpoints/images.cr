@@ -11,7 +11,7 @@ module Base
       def create(image : ::File) : Image
         request do
           response =
-            @resource.post(form: {"image" => image})
+            @resource.post("", form: {"image" => image})
 
           Image.from_json(response.body)
         end

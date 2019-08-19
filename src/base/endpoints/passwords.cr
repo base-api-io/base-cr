@@ -8,7 +8,7 @@ module Base
       def forgot_password(email : String) : ForgotPasswordToken
         request do
           response =
-            @resource.post(form: {
+            @resource.post("", form: {
               "email" => email,
             })
 

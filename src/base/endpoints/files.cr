@@ -8,7 +8,7 @@ module Base
       def create(file : ::File) : File
         request do
           response =
-            @resource.post(form: {"file" => file})
+            @resource.post("", form: {"file" => file})
 
           File.from_json(response.body)
         end

@@ -8,7 +8,7 @@ module Base
       def create(email : String, password : String, confirmation : String) : User
         request do
           response =
-            @resource.post(form: {
+            @resource.post("", form: {
               "confirmation" => confirmation,
               "password"     => password,
               "email"        => email,

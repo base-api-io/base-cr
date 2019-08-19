@@ -11,6 +11,6 @@ module Base
     getter subject : String
     getter html : String
     getter text : String
-    getter id : String
+    getter id : Int32
   end
 end
