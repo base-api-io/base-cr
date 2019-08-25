@@ -1,6 +1,33 @@
 require "./spec_helper"
 
 describe Base do
+  context "Listing users" do
+    it "lists users" do
+      WebMock
+        .stub(:get, "https://api.base-api.io/v1/users/")
+        .to_return(
+          body: {
+            items: [{
+              created_at: Time.now.to_rfc2822,
+              email:      "test@user.com",
+              id:         "id",
+            }],
+            metadata: {
+              count: 1,
+            },
+          }.to_json)
+
+      client =
+        Base::Client.new(access_token: "access_token")
+
+      list =
+        client.users.list
+
+      list.should be_a(Base::List(Base::User))
+      list.metadata.count.should eq(1)
+    end
+  end
+
   context "Create User" do
     it "creates a user" do
       WebMock

@@ -1,6 +1,36 @@
 require "./spec_helper"
 
 describe Base do
+  context "Listing images" do
+    it "lists images" do
+      WebMock
+        .stub(:get, "https://api.base-api.io/v1/images/")
+        .to_return(
+          body: {
+            items: [{
+              created_at: Time.now.to_rfc2822,
+              name:       "test.png",
+              width:      100,
+              height:     100,
+              size:       100,
+              id:         "id",
+            }],
+            metadata: {
+              count: 1,
+            },
+          }.to_json)
+
+      client =
+        Base::Client.new(access_token: "access_token")
+
+      list =
+        client.images.list
+
+      list.should be_a(Base::List(Base::Image))
+      list.metadata.count.should eq(1)
+    end
+  end
+
   context "Create Image" do
     it "creates an image" do
       WebMock

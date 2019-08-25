@@ -4,6 +4,19 @@ module Base
     class Images < Endpoint
       @path = "images"
 
+      # Lists the images of a project
+      def list(page : Int32 = 1, per_page : Int32 = 10) : List(Image)
+        request do
+          response =
+            @resource.get(form: {
+              "per_page" => per_page,
+              "page"     => page,
+            })
+
+          List(Image).from_json(response.body)
+        end
+      end
+
       # Uploads the given image and returns its metadata.
       #
       # Only images with ImageMagick understands can be uploaded otherwise it

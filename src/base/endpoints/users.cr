@@ -4,6 +4,19 @@ module Base
     class Users < Endpoint
       @path = "users"
 
+      # Lists the users of a project
+      def list(page : Int32 = 1, per_page : Int32 = 10) : List(User)
+        request do
+          response =
+            @resource.get(form: {
+              "per_page" => per_page,
+              "page"     => page,
+            })
+
+          List(User).from_json(response.body)
+        end
+      end
+
       # Creates a user with the given credentials.
       def create(email : String, password : String, confirmation : String) : User
         request do

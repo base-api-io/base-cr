@@ -54,6 +54,11 @@ email =
 Using the `users` endpoint  on the client you can create / get or delete users:
 
 ```crystal
+# List users
+users = client.users.list(page: 1, per_page: 10)
+users.items     # The array of users
+users.metadata  # The metadata object containing the total count
+
 # Create a user with email / password
 user =
   client.users.create(
@@ -105,6 +110,11 @@ Using the `files` endpoint on the client you can create / get / delete or
 download files:
 
 ```crystal
+# List files
+files = client.files.list(page: 1, per_page: 10)
+files.items     # The array of files
+files.metadata  # The metadata object containing the total count
+
 # Create a file
 file =
   client.files.create(file: File.open("/path/to/file"))
@@ -132,6 +142,11 @@ Using the `images` endpoint on the client you can create / get / delete or
 process images:
 
 ```crystal
+# List images
+images = client.images.list(page: 1, per_page: 10)
+images.items     # The array of images
+images.metadata  # The metadata object containing the total count
+
 # Create an image
 image =
   client.images.create(image: File.open("/path/to/image"))

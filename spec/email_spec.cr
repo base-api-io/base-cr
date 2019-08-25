@@ -13,7 +13,7 @@ describe Base do
             subject:      "subject",
             html:         "html",
             text:         "text",
-            id:           "id",
+            id:           0,
           }.to_json)
 
       client =

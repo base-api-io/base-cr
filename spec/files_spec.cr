@@ -1,6 +1,35 @@
 require "./spec_helper"
 
 describe Base do
+  context "Listing files" do
+    it "lists files" do
+      WebMock
+        .stub(:get, "https://api.base-api.io/v1/files/")
+        .to_return(
+          body: {
+            items: [{
+              created_at: Time.now.to_rfc2822,
+              extension:  "png",
+              name:       "test.png",
+              size:       100,
+              id:         "id",
+            }],
+            metadata: {
+              count: 1,
+            },
+          }.to_json)
+
+      client =
+        Base::Client.new(access_token: "access_token")
+
+      list =
+        client.files.list
+
+      list.should be_a(Base::List(Base::File))
+      list.metadata.count.should eq(1)
+    end
+  end
+
   context "Create File" do
     it "creates a file" do
       WebMock
