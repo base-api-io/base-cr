@@ -8,7 +8,7 @@ module Base
       def list(page : Int32 = 1, per_page : Int32 = 10) : List(User)
         request do
           response =
-            @resource.get(form: {
+            @resource.get("", params: {
               "per_page" => per_page,
               "page"     => page,
             })

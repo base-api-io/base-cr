@@ -4,7 +4,7 @@ describe Base do
   context "Listing images" do
     it "lists images" do
       WebMock
-        .stub(:get, "https://api.base-api.io/v1/images/")
+        .stub(:get, "https://api.base-api.io/v1/images/?page=1&per_page=10")
         .to_return(
           body: {
             items: [{

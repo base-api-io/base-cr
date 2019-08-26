@@ -4,7 +4,7 @@ describe Base do
   context "Listing files" do
     it "lists files" do
       WebMock
-        .stub(:get, "https://api.base-api.io/v1/files/")
+        .stub(:get, "https://api.base-api.io/v1/files/?page=1&per_page=10")
         .to_return(
           body: {
             items: [{

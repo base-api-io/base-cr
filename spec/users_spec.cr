@@ -4,7 +4,7 @@ describe Base do
   context "Listing users" do
     it "lists users" do
       WebMock
-        .stub(:get, "https://api.base-api.io/v1/users/")
+        .stub(:get, "https://api.base-api.io/v1/users/?page=1&per_page=10")
         .to_return(
           body: {
             items: [{
