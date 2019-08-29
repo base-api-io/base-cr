@@ -7,9 +7,10 @@ describe Base do
         .stub(:post, "https://api.base-api.io/v1/sessions/")
         .to_return(
           body: {
-            created_at: Time.now.to_rfc2822,
-            email:      "test@user.com",
-            id:         "id",
+            created_at:  Time.now.to_rfc2822,
+            email:       "test@user.com",
+            custom_data: nil,
+            id:          "id",
           }.to_json)
 
       client =

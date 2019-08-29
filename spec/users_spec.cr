@@ -8,9 +8,10 @@ describe Base do
         .to_return(
           body: {
             items: [{
-              created_at: Time.now.to_rfc2822,
-              email:      "test@user.com",
-              id:         "id",
+              created_at:  Time.now.to_rfc2822,
+              email:       "test@user.com",
+              custom_data: nil,
+              id:          "id",
             }],
             metadata: {
               count: 1,
@@ -34,9 +35,10 @@ describe Base do
         .stub(:post, "https://api.base-api.io/v1/users/")
         .to_return(
           body: {
-            created_at: Time.now.to_rfc2822,
-            email:      "test@user.com",
-            id:         "id",
+            created_at:  Time.now.to_rfc2822,
+            email:       "test@user.com",
+            custom_data: {age: 32},
+            id:          "id",
           }.to_json)
 
       client =
@@ -44,6 +46,7 @@ describe Base do
 
       user =
         client.users.create(
+          custom_data: {age: 32},
           email: "test@user.com",
           confirmation: "12345",
           password: "12345")
@@ -59,9 +62,10 @@ describe Base do
         .stub(:get, "https://api.base-api.io/v1/users/user_id")
         .to_return(
           body: {
-            created_at: Time.now.to_rfc2822,
-            email:      "test@user.com",
-            id:         "id",
+            created_at:  Time.now.to_rfc2822,
+            email:       "test@user.com",
+            custom_data: nil,
+            id:          "id",
           }.to_json)
 
       client =
@@ -81,9 +85,10 @@ describe Base do
         .stub(:delete, "https://api.base-api.io/v1/users/user_id")
         .to_return(
           body: {
-            created_at: Time.now.to_rfc2822,
-            email:      "test@user.com",
-            id:         "id",
+            created_at:  Time.now.to_rfc2822,
+            email:       "test@user.com",
+            custom_data: nil,
+            id:          "id",
           }.to_json)
 
       client =

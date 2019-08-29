@@ -18,13 +18,30 @@ module Base
       end
 
       # Creates a user with the given credentials.
-      def create(email : String, password : String, confirmation : String) : User
+      def create(email : String,
+                 password : String,
+                 confirmation : String,
+                 custom_data : T) : User forall T
         request do
           response =
             @resource.post("", form: {
+              "custom_data"  => custom_data.to_json,
               "confirmation" => confirmation,
               "password"     => password,
               "email"        => email,
+            })
+
+          User.from_json(response.body)
+        end
+      end
+
+      # Updates a user with the given data.
+      def create(email : String, custom_data : T) : User forall T
+        request do
+          response =
+            @resource.post("", form: {
+              "custom_data" => custom_data.to_json,
+              "email"       => email,
             })
 
           User.from_json(response.body)
