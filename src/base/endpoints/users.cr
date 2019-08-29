@@ -36,7 +36,7 @@ module Base
       end
 
       # Updates a user with the given data.
-      def create(email : String, custom_data : T) : User forall T
+      def update(email : String, custom_data : T) : User forall T
         request do
           response =
             @resource.post("", form: {
