@@ -56,6 +56,32 @@ describe Base do
     end
   end
 
+  context "Update User" do
+    it "updates a user" do
+      WebMock
+        .stub(:post, "https://api.base-api.io/v1/users/user_id")
+        .to_return(
+          body: {
+            created_at:  Time.now.to_rfc2822,
+            email:       "test@user.com",
+            custom_data: {age: 32},
+            id:          "id",
+          }.to_json)
+
+      client =
+        Base::Client.new(access_token: "access_token")
+
+      user =
+        client.users.update(
+          custom_data: {age: 32},
+          email: "test@user.com",
+          id: "user_id")
+
+      user.should be_a(Base::User)
+      user.email.should eq("test@user.com")
+    end
+  end
+
   context "Get User" do
     it "gets a users details" do
       WebMock
