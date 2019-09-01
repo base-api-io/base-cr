@@ -5,6 +5,9 @@ require "./endpoints/**"
 module Base
   # A client containing all the endpoints.
   class Client
+    # Endpoint for the mailing lists
+    getter mailing_lists : Endpoints::MailingLists
+
     # Endpoint for the forgot password flow.
     getter passwords : Endpoints::Passwords
 
@@ -52,6 +55,11 @@ module Base
 
       @passwords =
         Endpoints::Passwords.new(
+          access_token: access_token,
+          url: url)
+
+      @mailing_lists =
+        Endpoints::MailingLists.new(
           access_token: access_token,
           url: url)
     end
