@@ -180,6 +180,38 @@ url =
     quality: 10)
 ```
 
+### Mailing Lists
+
+A project can have many mailing lists which can be managed from the interface.
+
+The `mailingLists` endpoint allows you to programatically subscribe / unsubscribe
+emails to a mailing list and send emails to all subscribes using a single call.
+
+```crystal
+# Subscribe an email to a mailing list.
+list =
+  client.mailing_lists.subscribe(id: "mailing_list_id", email: "test@user.com")
+
+# Unsubscribe an email from a mailing list.
+list =
+  client.mailing_lists.unsubscribe(id: "mailing_list_id", email: "test@user.com")
+
+# Get a public unsubscribe url for the given mailing list and email which
+# when click unsubscribes a user from the mailing list and redirects to the
+# unsubscribe_redirect_url of the list.
+url =
+  client.mailing_lists.unsubscribe_url(id: "mailing_list_id", email: "test@user.com")
+
+# Send the same email to all of the subscribers
+results =
+  client.mailing_lists.send(
+    from: "from@example.com",
+    id: "mailing_list_id",
+    subject: "subject",
+    html: "HTML",
+    text: "Text")
+```
+
 ## Development
 
 This library uses [Crest](https://github.com/mamantoha/crest), you can run the
