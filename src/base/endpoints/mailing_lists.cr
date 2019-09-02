@@ -80,7 +80,7 @@ module Base
         token =
           Base64.encode("#{id}:#{email}")
 
-        "#{@resource.url}unsubscribe?token=#{token}"
+        "#{@resource.base_url}unsubscribe?token=#{token}"
       end
 
       # Returns the metadata of the mailing list with the given ID.

@@ -59,7 +59,7 @@ module Base
             "crop"    => crop_param,
           })
 
-        "#{@resource.url}#{id}/version?#{params}"
+        "#{@resource.base_url}#{id}/version?#{params}"
       end
 
       # Downloads the image with the given ID.

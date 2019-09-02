@@ -30,7 +30,7 @@ module Base
       # Returns the publicly accessible download URL of the file with the
       # given ID.
       def download_url(id : String) : String
-        "#{@resource.url}#{id}/download"
+        "#{@resource.base_url}#{id}/download"
       end
 
       # Downloads the file with the given ID into an IO.
