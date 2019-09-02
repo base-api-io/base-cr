@@ -12,6 +12,19 @@ module Base
         getter sent : Array(String)
       end
 
+      # Lists the mailing lists of a project
+      def list(page : Int32 = 1, per_page : Int32 = 10) : List(MailingList)
+        request do
+          response =
+            @resource.get("", params: {
+              "per_page" => per_page,
+              "page"     => page,
+            })
+
+          List(MailingList).from_json(response.body)
+        end
+      end
+
       # Sends an email with the given parameters.
       #
       # If there is no sending domain set up all emails will use the

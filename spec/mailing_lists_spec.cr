@@ -2,6 +2,35 @@ require "./spec_helper"
 
 describe Base do
   context "Mailing Lists" do
+    context "Listing mailing lists" do
+      it "lists mailing lists" do
+        WebMock
+          .stub(:get, "https://api.base-api.io/v1/mailing_lists/?page=1&per_page=10")
+          .to_return(
+            body: {
+              items: [{
+                created_at:               Time.now.to_rfc2822,
+                emails:                   ["test@user.com"],
+                name:                     "Test",
+                unsubscribe_redirect_url: "",
+                id:                       "0",
+              }],
+              metadata: {
+                count: 1,
+              },
+            }.to_json)
+
+        client =
+          Base::Client.new(access_token: "access_token")
+
+        list =
+          client.mailing_lists.list
+
+        list.should be_a(Base::List(Base::MailingList))
+        list.metadata.count.should eq(1)
+      end
+    end
+
     context "Subscribing to a mailing list" do
       it "subscribes the given email" do
         WebMock

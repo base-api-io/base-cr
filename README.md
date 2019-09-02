@@ -184,10 +184,15 @@ url =
 
 A project can have many mailing lists which can be managed from the interface.
 
-The `mailingLists` endpoint allows you to programatically subscribe / unsubscribe
+The `mailingLists` endpoint allows you to programatically list, subscribe / unsubscribe
 emails to a mailing list and send emails to all subscribes using a single call.
 
 ```crystal
+# List mailing lists
+lists = client.mailing_lists.list(page: 1, per_page: 10)
+lists.items     # The array of mailing lists
+lists.metadata  # The metadata object containing the total count
+
 # Subscribe an email to a mailing list.
 list =
   client.mailing_lists.subscribe(id: "mailing_list_id", email: "test@user.com")
