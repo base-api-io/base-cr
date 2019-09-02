@@ -82,6 +82,16 @@ module Base
 
         "#{@resource.url}unsubscribe?token=#{token}"
       end
+
+      # Returns the metadata of the mailing list with the given ID.
+      def get(id) : MailingList
+        request do
+          response =
+            @resource.get id
+
+          MailingList.from_json(response.body)
+        end
+      end
     end
   end
 end

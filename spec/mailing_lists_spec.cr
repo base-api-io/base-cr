@@ -130,5 +130,32 @@ describe Base do
         response.sent.should eq(["test@user.com"])
       end
     end
+
+    context "Get mailing list" do
+      it "gets a mailing lists details" do
+        WebMock
+          .stub(:get, "https://api.base-api.io/v1/mailing_lists/list_id")
+          .to_return(
+            body: {
+              created_at:               Time.now.to_rfc2822,
+              emails:                   ["test@user.com"],
+              name:                     "Test",
+              unsubscribe_redirect_url: "",
+              id:                       "id",
+            }.to_json)
+
+        client =
+          Base::Client.new(access_token: "access_token")
+
+        list =
+          client.mailing_lists.get("list_id")
+
+        list.should be_a(Base::MailingList)
+        list.unsubscribe_redirect_url.should eq("")
+        list.emails.should eq(["test@user.com"])
+        list.name.should eq("Test")
+        list.id.should eq("id")
+      end
+    end
   end
 end

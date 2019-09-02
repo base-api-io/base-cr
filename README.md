@@ -193,6 +193,10 @@ lists = client.mailing_lists.list(page: 1, per_page: 10)
 lists.items     # The array of mailing lists
 lists.metadata  # The metadata object containing the total count
 
+# Get a mailing list by id
+list =
+  client.mailing_lists.get("list_id")
+
 # Subscribe an email to a mailing list.
 list =
   client.mailing_lists.subscribe(id: "mailing_list_id", email: "test@user.com")
