@@ -221,6 +221,48 @@ results =
     text: "Text")
 ```
 
+### Forms
+
+A project can have many forms and those form can have many submissions.
+
+The `forms` endpoint allows you to programatically create, submit and manage forms.
+
+```crystal
+# List forms
+forms = client.forms.list(page: 1, per_page: 10)
+forms.items     # The array of forms
+forms.metadata  # The metadata object containing the total count
+
+# Create a form
+form =
+  client.forms.create(name: "Form")
+
+# Get a form
+form =
+  client.forms.get("form_id")
+
+# Delete a form (and it's submissions)
+form =
+  client.forms.delete("form_id")
+
+# Submit a form
+submission =
+  client.forms.submit("form_id", { "key" => "value" })
+
+# List form submissions
+submissions = client.forms.submissions("form_id", page: 1, per_page: 10)
+submissions.items     # The array of forms submissions
+submissions.metadata  # The metadata object containing the total count
+
+# Get a submission
+submission =
+  client.forms.get_submission("form_id", "submission_id")
+
+# Delete a submission
+submission =
+  client.forms.delete_submission("form_id", "submission_id")
+```
+
 ## Development
 
 This library uses [Crest](https://github.com/mamantoha/crest), you can run the

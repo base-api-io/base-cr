@@ -26,6 +26,9 @@ module Base
     # Endpoint for the files.
     getter files : Endpoints::Files
 
+    # Endpoint for the forms.
+    getter forms : Endpoints::Forms
+
     # Initializes a new client with an access_token and optional url.
     def initialize(access_token : String, url : String = "https://api.base-api.io")
       @users =
@@ -60,6 +63,11 @@ module Base
 
       @mailing_lists =
         Endpoints::MailingLists.new(
+          access_token: access_token,
+          url: url)
+
+      @forms =
+        Endpoints::Forms.new(
           access_token: access_token,
           url: url)
     end
