@@ -4,7 +4,7 @@ describe Base do
   context "Listing forms" do
     it "lists forms" do
       WebMock
-        .stub(:get, "https://api.base-api.io/v1/forms/")
+        .stub(:get, "https://api.base-api.io/v1/forms/?page=1&per_page=10")
         .to_return(
           body: {
             items: [{
@@ -125,7 +125,7 @@ describe Base do
   context "Listing submissions" do
     it "lists form submissions" do
       WebMock
-        .stub(:get, "https://api.base-api.io/v1/forms/form_id/submissions")
+        .stub(:get, "https://api.base-api.io/v1/forms/form_id/submissions?page=1&per_page=10")
         .to_return(
           body: {
             items: [{
