@@ -8,7 +8,7 @@ describe Base do
         .to_return(
           body: {
             items: [{
-              created_at: Time.now.to_rfc2822,
+              created_at: Time.local.to_rfc2822,
               extension:  "png",
               name:       "test.png",
               size:       100,
@@ -36,7 +36,7 @@ describe Base do
         .stub(:post, "https://api.base-api.io/v1/files/")
         .to_return(
           body: {
-            created_at: Time.now.to_rfc2822,
+            created_at: Time.local.to_rfc2822,
             extension:  "png",
             name:       "test.png",
             size:       100,
@@ -63,7 +63,7 @@ describe Base do
         .stub(:get, "https://api.base-api.io/v1/files/file_id")
         .to_return(
           body: {
-            created_at: Time.now.to_rfc2822,
+            created_at: Time.local.to_rfc2822,
             extension:  "png",
             name:       "test.png",
             size:       100,
@@ -120,7 +120,7 @@ describe Base do
         .stub(:delete, "https://api.base-api.io/v1/files/file_id")
         .to_return(
           body: {
-            created_at: Time.now.to_rfc2822,
+            created_at: Time.local.to_rfc2822,
             extension:  "png",
             name:       "test.png",
             size:       100,

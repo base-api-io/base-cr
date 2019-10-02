@@ -9,7 +9,7 @@ describe Base do
           .to_return(
             body: {
               items: [{
-                created_at:               Time.now.to_rfc2822,
+                created_at:               Time.local.to_rfc2822,
                 emails:                   ["test@user.com"],
                 name:                     "Test",
                 unsubscribe_redirect_url: "",
@@ -37,7 +37,7 @@ describe Base do
           .stub(:post, "https://api.base-api.io/v1/mailing_lists/0/subscribe")
           .to_return(
             body: {
-              created_at:               Time.now.to_rfc2822,
+              created_at:               Time.local.to_rfc2822,
               emails:                   ["test@user.com"],
               name:                     "Test",
               unsubscribe_redirect_url: "",
@@ -65,7 +65,7 @@ describe Base do
           .stub(:post, "https://api.base-api.io/v1/mailing_lists/0/unsubscribe")
           .to_return(
             body: {
-              created_at:               Time.now.to_rfc2822,
+              created_at:               Time.local.to_rfc2822,
               emails:                   ["test@user.com"],
               name:                     "Test",
               unsubscribe_redirect_url: "",
@@ -137,7 +137,7 @@ describe Base do
           .stub(:get, "https://api.base-api.io/v1/mailing_lists/list_id")
           .to_return(
             body: {
-              created_at:               Time.now.to_rfc2822,
+              created_at:               Time.local.to_rfc2822,
               emails:                   ["test@user.com"],
               name:                     "Test",
               unsubscribe_redirect_url: "",

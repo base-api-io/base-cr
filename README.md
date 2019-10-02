@@ -39,6 +39,11 @@ can manage authentication, email sending, files and images of your application.
 Using the `emails` endpoint on the client you can send emails:
 
 ```crystal
+# List emails
+emails = client.emails.list(page: 1, per_page: 10)
+emails.items     # The array of emails
+emails.metadata  # The metadata object containing the total count
+
 # Sending an email
 email =
   client.emails.send(

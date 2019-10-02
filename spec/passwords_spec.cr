@@ -28,7 +28,7 @@ describe Base do
         .stub(:put, "https://api.base-api.io/v1/password/")
         .to_return(
           body: {
-            created_at:  Time.now.to_rfc2822,
+            created_at:  Time.local.to_rfc2822,
             email:       "test@user.com",
             custom_data: nil,
             id:          "id",

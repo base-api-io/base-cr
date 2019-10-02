@@ -2,7 +2,7 @@ module Base
   module Endpoints
     # This endpoint contains methods for sending emails.
     class Emails < Endpoint
-      @path = "email"
+      @path = "emails"
 
       # Sends an email with the given parameters.
       #
@@ -14,9 +14,9 @@ module Base
       # otherwise it will return an error.
       def send(subject : String,
                from : String,
-               html : String,
-               text : String,
-               to : String) : Email
+               to : String,
+               html : String | Nil = nil,
+               text : String | Nil = nil) : Email
         request do
           response =
             @resource.post("", form: {
@@ -28,6 +28,19 @@ module Base
             })
 
           Email.from_json(response.body)
+        end
+      end
+
+      # Lists sent emails of a project
+      def list(page : Int32 = 1, per_page : Int32 = 10) : List(Email)
+        request do
+          response =
+            @resource.get("", params: {
+              "per_page" => per_page,
+              "page"     => page,
+            })
+
+          List(Email).from_json(response.body)
         end
       end
     end
