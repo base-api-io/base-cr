@@ -175,6 +175,36 @@ describe Base do
     end
   end
 
+  context "Update a submission" do
+    it "updates a submission" do
+      WebMock
+        .stub(:put, "https://api.base-api.io/v1/forms/form_id/submit/submission_id")
+        .to_return(
+          body: {
+            created_at: Time.local.to_rfc2822,
+            files:      [] of String,
+            fields:     nil,
+            id:         "id",
+          }.to_json)
+
+      client =
+        Base::Client.new(access_token: "access_token")
+
+      submission =
+        client
+          .forms
+          .update_submission(
+            id: "submission_id",
+            form_id: "form_id",
+            form: {"key" => "value"})
+
+      submission.should be_a(Base::FormSubmission)
+      submission.files.should eq([] of String)
+      submission.fields.should eq(nil)
+      submission.id.should eq("id")
+    end
+  end
+
   context "Delete a form" do
     it "deletes a form" do
       WebMock

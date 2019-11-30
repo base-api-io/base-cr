@@ -82,6 +82,16 @@ module Base
         end
       end
 
+      # Submits a new submission for the form with the given ID.
+      def update_submission(id : String, form_id : String, form) : FormSubmission
+        request do
+          response =
+            @resource.put("#{form_id}/submit/#{id}", form: form)
+
+          FormSubmission.from_json(response.body)
+        end
+      end
+
       # Deletes the form submission with the given ID of the form with the given ID.
       def delete_submission(id : String, submission_id : String) : FormSubmission
         request do
