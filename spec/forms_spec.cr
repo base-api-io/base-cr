@@ -194,8 +194,8 @@ describe Base do
         client
           .forms
           .update_submission(
-            id: "submission_id",
-            form_id: "form_id",
+            id: "form_id",
+            submission_id: "submission_id",
             form: {"key" => "value"})
 
       submission.should be_a(Base::FormSubmission)

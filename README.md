@@ -266,8 +266,8 @@ submission =
 # Update a submission
 submission =
   client.forms.update_submission(
-    id: "id",
-    form_id: "form_id",
+    id: "form_id",
+    submission_id: "submission_id",
     form: { "key" => "value" })
 
 # Delete a submission

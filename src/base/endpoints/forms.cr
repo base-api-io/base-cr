@@ -83,10 +83,10 @@ module Base
       end
 
       # Submits a new submission for the form with the given ID.
-      def update_submission(id : String, form_id : String, form) : FormSubmission
+      def update_submission(id : String, submission_id : String, form) : FormSubmission
         request do
           response =
-            @resource.put("#{form_id}/submit/#{id}", form: form)
+            @resource.put("#{id}/submit/#{submission_id}", form: form)
 
           FormSubmission.from_json(response.body)
         end
